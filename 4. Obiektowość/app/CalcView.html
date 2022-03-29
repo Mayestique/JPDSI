@@ -1,0 +1,60 @@
+{extends file=$conf->root_path|cat:"/templates/main.html"}
+
+{block name=footer}{/block}
+
+{block name=content}
+
+<center><h3>Kalkulator kredytowy</h2>
+
+
+<form class="pure-form pure-form-stacked" action="{$conf->app_url}/app/calc.php" method="post">
+	<fieldset>
+		<label>Kwota kredytu: </label>
+		<input type="text" placeholder="Kwota kredytu" name="kwota" style="width: 500px;" value="{$form->kwota}">
+		
+		<label>Oprocentowanie: </label>
+		<input type="text" placeholder="Oprocentowanie" name="procent" style="width: 500px;" value="{$form->procent}">
+		
+		<label>Liczba miesięcy: </label>
+		<input type="text" placeholder="Liczba miesięcy" name="ile" style="width: 500px;" value="{$form->ile}">
+	</fieldset>
+	<button type="submit" id="oblicz" class="pure-button pure-button-primary">Oblicz</button>
+</form>
+
+<div class="messages">
+
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if $msgs->isError()}
+	<h4>Wystąpiły błędy: </h4>
+	<ol class="err">
+	{foreach $msgs->getErrors() as $err}
+	{strip}
+		{$err}
+	{/strip}
+	{/foreach}
+	</ol>
+{/if}
+
+{* wyświeltenie listy informacji, jeśli istnieją *}
+{if $msgs->isInfo()}
+	<h4>Informacje: </h4>
+	<ol class="inf">
+	{foreach $msgs->getInfos() as $inf}
+	{strip}
+		{$inf}
+	{/strip}
+	{/foreach}
+	</ol>
+{/if}
+
+{if isset($res->result)}
+	<h4>Miesięczna rata:</h4>
+	<p class="res">
+	{$res->result}
+	</p>
+{/if}
+
+</div>
+</div></center>
+
+{/block}
