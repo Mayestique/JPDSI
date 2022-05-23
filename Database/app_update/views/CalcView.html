@@ -11,6 +11,8 @@
 
 <form class="pure-form pure-form-stacked" action="{$conf->action_root}personSave" method="post">
 	<fieldset>
+		<input id="id" type="hidden" name="id" value="{$form->id}">
+		
 		<label>Imię: </label>
 		<input type="text" placeholder="Imię" name="name" style="width: 500px;" value="{$form->name}">
 		
