@@ -1,0 +1,42 @@
+{extends file="main.tpl"}
+
+{block name=footer}{/block}
+
+{block name=content}
+
+<center><h3>Kalkulator kredytowy</h2>
+
+<div class="pure-menu pure-menu-horizontal bottom-margin">
+</div>
+
+<form class="pure-form pure-form-stacked" action="{$conf->action_root}personSave" method="post">
+	<fieldset>
+        <input id="id" type="hidden" name="id" value="{$form->id}">
+			
+		<label>Imię: </label>
+		<input type="text" placeholder="Imię" name="name" style="width: 500px;" value="{$form->name}">
+		
+		<label>Nazwisko: </label>
+		<input type="text" placeholder="Nazwisko" name="surname" style="width: 500px;" value="{$form->surname}">
+	
+		<label>Kwota kredytu: </label>
+		<input type="text" placeholder="Kwota kredytu" name="kwota" style="width: 500px;" value="{$form->kwota}">
+		
+		<label>Oprocentowanie: </label>
+		<input type="text" placeholder="Oprocentowanie" name="procent" style="width: 500px;" value="{$form->procent}">
+		
+		<label>Liczba miesięcy: </label>
+		<input type="text" placeholder="Liczba miesięcy" name="ile" style="width: 500px;" value="{$form->ile}">
+	</fieldset>
+	<button type="submit" id="oblicz" class="pure-button pure-button-primary">Oblicz</button>
+</form>
+
+{include file='messages.tpl'}
+
+{if isset($res->result)}
+<div class="messages inf">
+	Miesięczna rata: {$res->result}
+</div>
+{/if}
+</center>
+{/block}
